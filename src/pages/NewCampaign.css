@@ -1,0 +1,135 @@
+.new-campaign-cont {
+  font-family: 'Nunito', 'sans-serif';
+  margin-left: 22%;
+  color: #666666;
+  font-size: 0.875em;
+  padding: 10% 0 10% 5.3rem;
+  /* z-index: -1; */
+}
+
+.create-text {
+  font-family: Work Sans;
+  font-weight: bold;
+  font-size: 1.25em;
+  color: #247b7b;
+  text-align: left;
+}
+
+/* Form css */
+form {
+  width: 42.6rem;
+}
+textarea {
+  resize: none;
+  padding: 1rem;
+}
+input {
+  line-height: 2.5rem;
+  padding: 0 0.5rem;
+}
+textarea,
+input {
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  border: 1px solid #999999;
+}
+form div {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+/* form label {
+  margin-bottom: 1rem;
+} */
+label span {
+  color: red;
+  font-size: 0.63em;
+  font-weight: bold;
+}
+
+form input::placeholder,
+textarea::placeholder {
+  color: #999999;
+  font-size: 0.875em;
+}
+.desc textarea {
+  height: 6rem;
+}
+input[type='date']::-webkit-calendar-picker-indicator {
+  display: none;
+}
+.date-container {
+  display: flex;
+  flex-direction: row;
+  gap: 1.6rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+}
+
+.date-container input {
+  width: 20.6rem;
+  color: #999999;
+}
+
+.toggle-cont {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0.8rem 0 1.5rem 0;
+  font-weight: bold;
+}
+
+.toggle-cont button {
+  cursor: pointer;
+}
+/* .toggle-cont {
+  display: flex;
+  flex-direction: row;
+} */
+.toggle-on,
+.toggle-off {
+  font-size: 2.7em;
+}
+.toggle-on {
+  color: #6e0080;
+}
+
+.toggle-off {
+  color: #f4f4f4;
+}
+
+.addnew-select-input {
+  color: #999999;
+  width: 9.7rem;
+  padding: 0.6rem 0.3rem;
+  border: 1px solid #999999;
+}
+
+.new-campaign-btns {
+  margin-top: 3.2rem;
+  width: 50%;
+  display: flex;
+  text-align: center;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+  gap: 1.5rem;
+}
+
+.cancel-btn,
+.create-btn {
+  padding: 0.8rem 0;
+  width: 14rem;
+  border-radius: 4px;
+}
+
+.cancel-btn {
+  border: 1px solid #247b7b;
+}
+
+.create-btn {
+  background-color: #247b7b;
+  color: #ffffff;
+}

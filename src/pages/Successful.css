@@ -1,0 +1,57 @@
+.checked-div {
+  background: #ffffff;
+  width: 27.3rem;
+  height: 22.4rem;
+  padding: 7rem 4.7rem 4.7rem;
+  left: 40%;
+  top: 20%;
+  position: absolute;
+}
+
+.checked {
+  font-size: 5.6em;
+  color: #247b7b;
+}
+
+.checked-text {
+  font-family: 'Nunito', sans-serif;
+  color: #666666;
+  font-size: 0.875em;
+  margin-bottom: 2.4rem;
+}
+
+.checked-btn {
+  font-family: 'Syne', sans-serif;
+  font-weight: bold;
+  font-size: 0.75em;
+  width: 14.3rem;
+  background: #247b7b;
+  border-radius: 4px;
+  height: 2.9rem;
+  color: white;
+}
+
+.stop-btns{
+  display: flex;
+  gap: 1.5rem;
+  justify-content: center;
+}
+
+.cancel-camp-btn,
+.delete-camp-btn{
+  border-radius: 4px;
+  padding: .6rem;
+
+}
+.cancel-camp-btn{
+  width: 6.3rem;
+  border:1px solid #247B7B;
+  color: black;
+
+}
+
+.delete-camp-btn{
+  color: white;
+  width:auto;
+  background: #990000;
+}
