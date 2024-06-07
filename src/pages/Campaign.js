@@ -10,7 +10,7 @@ import TopNav from './TopNav'
 import './Campaign.css'
 import './Overview.css'
 import axios from 'axios'
-import {toast} from "react-toastify"
+import {toast, ToastContainer} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Campaign() {
@@ -25,7 +25,6 @@ export default function Campaign() {
   }, [])
 
   const getCampaigns = async () => {
-    setLoading(true)
     try {
       const postData = await axios.get(
         'https://infinion-test-int-test.azurewebsites.net/api/Campaign',
@@ -36,7 +35,6 @@ export default function Campaign() {
         },
       )
 
-      setLoading(false)
       setCampaigns(postData.data)
     } catch (err) {
       setLoading(false)
@@ -234,6 +232,18 @@ export default function Campaign() {
           </div>
         </div>
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   )
 }

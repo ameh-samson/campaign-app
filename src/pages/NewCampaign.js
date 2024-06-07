@@ -3,15 +3,16 @@ import { BsToggleOn, BsToggleOff } from 'react-icons/bs'
 import TopNav from './TopNav'
 import Navbar from './Side-navbar'
 import Successful from './Successful'
-import StopCampaign from './StopCampaign'
 import './NewCampaign.css'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
 import {toast} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
+import { ToastContainer } from 'react-toastify'
 
-export default function NewCampaign(navigation) {
-  const [isToggle, setIsToggle] = useState(true)
+export default function NewCampaign() {
+
+  const [isToggle, setIsToggle] = useState(false)
   const [isSuccessful, setIsSuccessful] = useState(false)
   const [formData, setFormData] = useState({
     name: '',
@@ -38,18 +39,18 @@ export default function NewCampaign(navigation) {
       ...prevFormData,
       [name]: value,
     }))
+
   }
 
   const postCampaign = async (e) => {
     e.preventDefault()
     if (!name || !description || !startDate || !endDate || !keywords) {
-      toast.alert('Please fill the form.')
+      toast.warn('Please fill the form.')
       return
     }
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      isLoading: true,
-    }))
+    // setFormData((prevFormData) => ({
+    //   ...prevFormData,
+    // }))
     try {
       const postData = await axios.post(
         'https://infinion-test-int-test.azurewebsites.net/api/campaign',
@@ -79,13 +80,11 @@ export default function NewCampaign(navigation) {
         dailyDigest: '',
       })
 
-      console.log(postData)
     } catch (err) {
-      return 'Please fill the form'
+      toast.error('Failed to update campaign information.');
     }
   }
 
-  console.log(formData)
 
   // Ref for the successful pop up
   const successfulPopupRef = useRef(null)
@@ -106,7 +105,8 @@ export default function NewCampaign(navigation) {
     }
   }
 
-  const handleToggle = () => {
+  const handleToggle = (e) => {
+    e.preventDefault()
     setIsToggle(!isToggle)
   }
 
@@ -205,6 +205,18 @@ export default function NewCampaign(navigation) {
           </div>
         )}{' '}
       </div>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
     </div>
   )
 }
