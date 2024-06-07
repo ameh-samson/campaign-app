@@ -14,33 +14,41 @@ import {toast, ToastContainer} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
 
 export default function Campaign() {
-  const [campaigns, setCampaigns] = useState([])
+  // these states helps store and update data
+  // stores and updates the campaign list page
+  const [campaigns, setCampaigns] = useState([]) 
+  // handles the list of campaigns shown per page
   const [currentPage, setCurrentPage] = useState(1)
+  // number of campaigns that will show per page
   const itemsPerPage = 10
 
+  // handles the rendering of the campaigns from the backend api
   useEffect(() => {
     getCampaigns()
   }, [])
 
+  // the function that handles the fecting of the campaigns fromthe api
   const getCampaigns = async () => {
     try {
       const postData = await axios.get(
         'https://infinion-test-int-test.azurewebsites.net/api/Campaign',
         {
+          // this states the type of data that is being received
           headers: {
             'Content-Type': 'application/json',
           },
         },
       )
-
+// this updates the state with the data that was gotten
       setCampaigns(postData.data)
     } catch (err) {
+      // sets the campaign page to empty if the fect request fails
       setCampaigns([])
-      console.log(err)
-    }
+toast.alert("Unable to get campaigns, please retry")    }
   }
-
+// this function is incharge of deleting any selected campaign that matches an id
   const deleteCampaign = async (id) => {
+    // confirm if you want to delete the clicked campaign
     const isConfirmed = window.confirm(
       'Are you sure you want to delete this campaign?',
     )
@@ -63,12 +71,14 @@ export default function Campaign() {
     }
   }
 
+  // this handles the number of campaigns that will be shown per page
   const indexOfLastItem = currentPage * itemsPerPage
   const indexOfFirstItem = indexOfLastItem - itemsPerPage
   const currentCampaigns = campaigns.slice(indexOfFirstItem, indexOfLastItem)
 
   const totalPages = Math.ceil(campaigns.length / itemsPerPage)
 
+  // handles the pagination also
   const handlePageClick = (pageNumber) => {
     setCurrentPage(pageNumber)
   }
@@ -77,7 +87,7 @@ export default function Campaign() {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i)
   }
-
+// filters and displays the number of active and inactive campaigns
   const activeCampaignsCount = campaigns.filter(
     (campaign) => campaign.campaignStatus === 'Active',
   ).length
