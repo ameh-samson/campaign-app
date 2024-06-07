@@ -140,6 +140,7 @@ button {
 .campaign-bottom-text {
   font-weight: bold;
 }
+
 .num-two {
   cursor: pointer;
   background-color: #247b7b;
@@ -158,4 +159,8 @@ color: #990000;
 
 .active {
   color: #009918;
+}
+
+.page-number{
+  cursor: pointer;
 }

@@ -21,10 +21,9 @@ export default function Edit() {
     endDate: '',
     linkedKeywords: '',
     digestCampaign: false,
-    dailyDigest: ''
+    dailyDigest: '',
+    campaignStatus: ''
   });
-
- 
 
   useEffect(() => {
     getCampaign();
@@ -35,7 +34,6 @@ export default function Edit() {
       try {
         const postData = await axios.get(
           `https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`,
-          
           {
             headers: {
               'Content-Type': 'application/json',
@@ -70,25 +68,31 @@ export default function Edit() {
     return `${year}-${month}-${day}`;
   };
 
-
   const handleEdit = async (e) => {
     e.preventDefault();
-  
+    const payload = {
+      campaignDTO: {
+        ...formData,
+      },
+    };
+
+    console.log('Submitting form with data:', payload);
+
     try {
       const response = await axios.put(
         `https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`,
-        formData, 
+        payload,
         {
           headers: {
             'Content-Type': 'application/json',
           },
         }
       );
-  
-      console.log('Response:', response);
+
+      console.log('Response:', formData);
       if (response.status === 200 || response.status === 204) {
         toast.success('Campaign information updated successfully.');
-        navigate('/campaign'); 
+        navigate('/campaign');
       } else {
         toast.error('Failed to update campaign information.');
       }
@@ -96,7 +100,6 @@ export default function Edit() {
       toast.error('Failed to update campaign information.');
     }
   };
-  
 
   return (
     <div>
@@ -191,12 +194,21 @@ export default function Edit() {
               <Link to="">
                 <button className="stop-btn">Stop Campaign</button>
               </Link>
-              <button className="edit-page-btn" type="submit">Edit Information</button>
+              <button type="submit" className="edit-page-btn">Edit Information</button>
             </div>
           </form>
         </div>
       </div>
-      <ToastContainer />
+      <ToastContainer 
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={true}
+        newestOnTop={false}
+        closeOnClick
+        rtl={true}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover/>
     </div>
   );
 }

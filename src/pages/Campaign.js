@@ -15,8 +15,6 @@ import 'react-toastify/dist/ReactToastify.css'
 
 export default function Campaign() {
   const [campaigns, setCampaigns] = useState([])
-  const [loading, setLoading] = useState(false)
-  const [deleting, setDeleting] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
   const itemsPerPage = 10
 
@@ -37,7 +35,6 @@ export default function Campaign() {
 
       setCampaigns(postData.data)
     } catch (err) {
-      setLoading(false)
       setCampaigns([])
       console.log(err)
     }
@@ -48,7 +45,6 @@ export default function Campaign() {
       'Are you sure you want to delete this campaign?',
     )
     if (isConfirmed) {
-      setDeleting(true)
       try {
         const res = await axios.delete(
           `https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`,
@@ -59,14 +55,11 @@ export default function Campaign() {
           },
         )
         if (res.status === 204) {
-          setDeleting(false)
           toast.success('Campaign has been deleted.')
           getCampaigns()
         }
       } catch (err) {
-        setDeleting(false)
-        console.log(err)
-      }
+        toast.alert('Unable to delete campaign')      }
     }
   }
 
@@ -145,9 +138,7 @@ export default function Campaign() {
                     <tr key={campaign.id}>
                       <td>{indexOfFirstItem + index + 1}.</td>
                       <td>
-                        {campaign.campaignName === ''
-                          ? '---'
-                          : campaign.campaignName}
+                        {campaign.campaignName}
                       </td>
                       <td>{campaign.startDate.slice(0, 10)}</td>
                       <td
@@ -212,8 +203,8 @@ export default function Campaign() {
                     </span>
                   )
                 } else if (
-                  (number === currentPage - 3 && number > 1) ||
-                  (number === currentPage + 3 && number < totalPages)
+                  (number === currentPage - 7 && number > 1) ||
+                  (number === currentPage + 7 && number < totalPages)
                 ) {
                   return <span key={number}>...</span>
                 } else {
