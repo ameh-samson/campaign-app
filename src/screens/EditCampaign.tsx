@@ -51,24 +51,20 @@ export default function Edit() {
     }
   };
 
-  const formatDate = (dateString) => {
+  const formatDate = (dateString: string | number | Date) => {
     const date = new Date(dateString);
     const year = date.getFullYear();
-    let month = date.getMonth() + 1;
-    let day = date.getDate();
+    let month: number = date.getMonth() + 1;
+    let day: number = date.getDate();
 
-    if (month < 10) {
-      month = `0${month}`;
-    }
+    
+    const formattedMonth = month < 10 ? `0${month}` : month.toString();
+    const formattedDay = day < 10 ? `0${day}` : day.toString();
 
-    if (day < 10) {
-      day = `0${day}`;
-    }
-
-    return `${year}-${month}-${day}`;
+    return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
-  const handleEdit = async (e) => {
+  const handleEdit = async (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     const payload = {
       campaignDTO: {

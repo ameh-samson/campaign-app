@@ -44,10 +44,10 @@ export default function Campaign() {
     } catch (err) {
       // sets the campaign page to empty if the fect request fails
       setCampaigns([])
-toast.alert("Unable to get campaigns, please retry")    }
+toast.error("Unable to get campaigns, please retry")    }
   }
 // this function is incharge of deleting any selected campaign that matches an id
-  const deleteCampaign = async (id) => {
+  const deleteCampaign = async (id: number) => {
     // confirm if you want to delete the clicked campaign
     const isConfirmed = window.confirm(
       'Are you sure you want to delete this campaign?',
@@ -67,7 +67,7 @@ toast.alert("Unable to get campaigns, please retry")    }
           getCampaigns()
         }
       } catch (err) {
-        toast.alert('Unable to delete campaign')      }
+        toast.warning('Unable to delete campaign')}
     }
   }
 
@@ -79,7 +79,7 @@ toast.alert("Unable to get campaigns, please retry")    }
   const totalPages = Math.ceil(campaigns.length / itemsPerPage)
 
   // handles the pagination also
-  const handlePageClick = (pageNumber) => {
+  const handlePageClick = (pageNumber: number) => {
     setCurrentPage(pageNumber)
   }
 
@@ -87,12 +87,20 @@ toast.alert("Unable to get campaigns, please retry")    }
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i)
   }
+
+
+  type campaignType = {
+    id: number
+    campaignStatus: 'Active' | 'Inactive'
+    campaignName: string
+    startDate: string
+  }
 // filters and displays the number of active and inactive campaigns
   const activeCampaignsCount = campaigns.filter(
-    (campaign) => campaign.campaignStatus === 'Active',
+    (campaign: campaignType) => campaign.campaignStatus === 'Active',
   ).length
   const inactiveCampaignsCount = campaigns.filter(
-    (campaign) => campaign.campaignStatus !== 'Active',
+    (campaign: campaignType) => campaign.campaignStatus !== 'Active',
   ).length
 
   return (
@@ -143,7 +151,7 @@ toast.alert("Unable to get campaigns, please retry")    }
               </thead>
 
               <tbody>
-                {currentCampaigns.map((campaign, index) => {
+                {currentCampaigns.map((campaign: campaignType, index) => {
                   return (
                     <tr key={campaign.id}>
                       <td>{indexOfFirstItem + index + 1}.</td>

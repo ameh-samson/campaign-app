@@ -33,7 +33,7 @@ export default function NewCampaign() {
     digestCampaign,
   } = formData
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: { target: { name: any; value: any } }) => {
     const { name, value } = e.target
     setFormData((prevFormData) => ({
       ...prevFormData,
@@ -42,7 +42,7 @@ export default function NewCampaign() {
 
   }
 
-  const postCampaign = async (e) => {
+  const postCampaign = async (e: { preventDefault: () => void }) => {
     e.preventDefault()
     if (!name || !description || !startDate || !endDate || !keywords) {
       toast.warn('Please fill the form.')
@@ -87,7 +87,7 @@ export default function NewCampaign() {
 
 
   // Ref for the successful pop up
-  const successfulPopupRef = useRef(null)
+  const successfulPopupRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     document.addEventListener('click', handleClickOutside)
     return () => {
@@ -95,17 +95,16 @@ export default function NewCampaign() {
     }
   }, [])
 
-  // Handle click outside pop up box functiob
-  const handleClickOutside = (event) => {
+  // Handle click outside pop up box function
+  const handleClickOutside = (e: { target: any }) => {
     if (
-      successfulPopupRef.current &&
-      !successfulPopupRef.current.contains(event.target)
+      successfulPopupRef.current?.contains(e.target as Node) === false
     ) {
-      setIsSuccessful(false)
+      setIsSuccessful(false);
     }
   }
 
-  const handleToggle = (e) => {
+  const handleToggle = (e: { preventDefault: () => void }) => {
     e.preventDefault()
     setIsToggle(!isToggle)
   }

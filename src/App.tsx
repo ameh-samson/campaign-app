@@ -1,11 +1,12 @@
+import React from 'react'
 import './App.css'
-import Dashboard from './pages/Dashboard'
-import Campaign from './pages/Campaign'
-import EditCampaign from './pages/EditCampaign'
+import Dashboard from './screens/Dashboard'
+import Campaign from './screens/Campaign'
+import EditCampaign from './screens/EditCampaign'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import NewCampaign from './pages/NewCampaign'
+import NewCampaign from './screens/NewCampaign'
 
 function App() {
   return (
