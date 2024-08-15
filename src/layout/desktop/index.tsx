@@ -9,8 +9,12 @@ interface DesktopLayoutPropsType {
 const DesktopLayout = ({ children }: DesktopLayoutPropsType) => {
   return (
     <div>
-      <SideNavbar />
-      <Header />
+      <div>
+        <SideNavbar />
+      </div>
+      <div>
+        <Header />
+      </div>
 
       <div>{children}</div>
     </div>

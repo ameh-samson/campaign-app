@@ -7,7 +7,7 @@ import { FiEdit } from 'react-icons/fi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { MdOutlineSearch } from 'react-icons/md'
 import Header from '@/layout/desktop/Header'
-import '@/screens/campaign/Campaign.css'
+import './Campaign.css'
 import '@/screens/overview/Overview.css'
 import axios from 'axios'
 import {toast, ToastContainer} from "react-toastify"

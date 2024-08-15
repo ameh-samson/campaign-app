@@ -1,6 +1,7 @@
 import React from 'react'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import profile from '@/assets/jpg/profilepic.jpg'
+import '@/screens/overview/Overview.css'
 
 export default function Header() {
   return (
