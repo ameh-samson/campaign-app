@@ -1,13 +1,13 @@
 import React from 'react'
 import './Side-navBar.css'
-import logo from '../images/logo.jpg'
+import logo from '@/assets/jpg/logo.jpg'
 import { NavLink } from 'react-router-dom'
 import { IoIosAdd, IoMdHelpCircleOutline } from 'react-icons/io'
 import { RiDashboard2Line } from 'react-icons/ri'
 import { MdOutlineCampaign, MdOutlineWbIncandescent } from 'react-icons/md'
 import { IoSettingsOutline } from 'react-icons/io5'
 
-export default function Navbar() {
+export default function SideNavbar() {
   return (
     <nav className="navbar">
       <div className="logo-div">

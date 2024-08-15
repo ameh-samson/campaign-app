@@ -1,12 +1,13 @@
 import React from 'react'
 import './App.css'
-import Dashboard from './screens/Dashboard'
-import Campaign from './screens/Campaign'
-import EditCampaign from './screens/EditCampaign'
+import Campaign from '@/screens/campaign/Campaign'
+import EditCampaign from '@/screens/editCampaign/EditCampaign'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import NewCampaign from './screens/NewCampaign'
+import NewCampaign from '@/screens/newCampaign/NewCampaign'
+import { GrandLayout } from './layout/GrandLayout'
+import Overview from './screens/overview/Overview'
 
 function App() {
   return (
@@ -25,10 +26,12 @@ function App() {
       />
       <Router>
         <Routes>
-          <Route path="/" element={<Dashboard />} />
+          <Route element={<GrandLayout/>}>
+          <Route path="/" index element={<Overview />} />
           <Route path="/new" element={<NewCampaign />} />
           <Route path="/campaign" element={<Campaign />} />
           <Route path="/edit-campaign/:id" element={<EditCampaign />} />
+          </Route>
         </Routes>
       </Router>
     </div>

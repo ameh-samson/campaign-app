@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from './Side-navbar'
+import Navbar from '@/layout/desktop/sideNavbar/Side-navbar'
 import { Link } from 'react-router-dom'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { GoEye } from 'react-icons/go'
 import { FiEdit } from 'react-icons/fi'
 import { RiDeleteBin6Line } from 'react-icons/ri'
 import { MdOutlineSearch } from 'react-icons/md'
-import TopNav from './TopNav'
-import './Campaign.css'
-import './Overview.css'
+import Header from '@/layout/desktop/Header'
+import '@/screens/campaign/Campaign.css'
+import '@/screens/overview/Overview.css'
 import axios from 'axios'
 import {toast, ToastContainer} from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css'
@@ -106,7 +106,7 @@ toast.error("Unable to get campaigns, please retry")    }
   return (
     <div className="campaign-page">
       <Navbar />
-      <TopNav />
+      <Header />
 
       <div className="campaign-container">
         <h3 className="camp-text">All Campaigns</h3>

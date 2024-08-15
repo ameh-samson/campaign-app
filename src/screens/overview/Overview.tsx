@@ -1,14 +1,14 @@
 import React from 'react'
-import profile from  '../images/profile.jpg'
-import './Overview.css'
-import './Side-navBar.css'
+import profile from  '@/assets/jpg/profile.jpg'
+import '@/screens/overview/Overview.css'
+import '@/layout/desktop/sideNavbar/Side-navBar.css'
 import Lottie from 'lottie-react'
 import { Link } from 'react-router-dom'
 import { MdOutlineSearch } from 'react-icons/md'
 import { IoMdNotificationsOutline, IoIosAdd } from 'react-icons/io'
 import { RiCalendar2Line } from 'react-icons/ri'
 import { CiExport } from 'react-icons/ci'
-import searchEmpty from '../search.json'
+import searchEmpty from '@/assets/json/search.json'
 
 export default function Overview() {
   return (

@@ -4,10 +4,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './EditCampaign.css';
-import './NewCampaign.css';
-import Navbar from './Side-navbar';
-import TopNav from './TopNav';
+import '@/screens/editCampaign/EditCampaign.css';
+import '@/screens/newCampaign/NewCampaign.css';
+import Navbar from '@/layout/desktop/sideNavbar/Side-navbar';
+import TopNav from '@/layout/desktop/Header';
 
 export default function Edit() {
   const location = useLocation();

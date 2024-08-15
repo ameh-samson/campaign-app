@@ -63,6 +63,7 @@ width: 1.8rem; */
 .export-div {
   display: flex;
   align-items: center;
+  padding-top: 5%;
 }
 .date-export-cont {
   display: flex;
