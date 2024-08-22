@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { IoMdArrowBack } from 'react-icons/io';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import '@/screens/editCampaign/EditCampaign.css';
-import '@/screens/newCampaign/NewCampaign.css';
-import Navbar from '@/layout/desktop/sideNavbar/Side-navbar';
-import TopNav from '@/layout/desktop/Header';
+import React, { useEffect, useState } from "react";
+import { IoMdArrowBack } from "react-icons/io";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import "@/screens/editCampaign/EditCampaign.css";
+import "@/screens/newCampaign/NewCampaign.css";
+import Navbar from "@/layout/desktop/sideNavbar/Side-navbar";
+import TopNav from "@/layout/desktop/Header";
 
 export default function Edit() {
   const location = useLocation();
@@ -15,14 +15,14 @@ export default function Edit() {
   const id = location.search.slice(1);
 
   const [formData, setFormData] = useState({
-    campaignName: '',
-    campaignDescription: '',
-    startDate: '',
-    endDate: '',
-    linkedKeywords: '',
+    campaignName: "",
+    campaignDescription: "",
+    startDate: "",
+    endDate: "",
+    linkedKeywords: "",
     digestCampaign: false,
-    dailyDigest: '',
-    campaignStatus: ''
+    dailyDigest: "",
+    campaignStatus: "",
   });
 
   useEffect(() => {
@@ -36,9 +36,9 @@ export default function Edit() {
           `https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`,
           {
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-          },
+          }
         );
 
         const campaignData = postData.data;
@@ -57,14 +57,13 @@ export default function Edit() {
     let month: number = date.getMonth() + 1;
     let day: number = date.getDate();
 
-    
     const formattedMonth = month < 10 ? `0${month}` : month.toString();
     const formattedDay = day < 10 ? `0${day}` : day.toString();
 
     return `${year}-${formattedMonth}-${formattedDay}`;
   };
 
-  const handleEdit = async (e: { preventDefault: () => void; }) => {
+  const handleEdit = async (e: { preventDefault: () => void }) => {
     e.preventDefault();
     const payload = {
       campaignDTO: {
@@ -72,7 +71,7 @@ export default function Edit() {
       },
     };
 
-    console.log('Submitting form with data:', payload);
+    console.log("Submitting form with data:", payload);
 
     try {
       const response = await axios.put(
@@ -80,20 +79,20 @@ export default function Edit() {
         payload,
         {
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
         }
       );
 
-      console.log('Response:', formData);
+      console.log("Response:", formData);
       if (response.status === 200 || response.status === 204) {
-        toast.success('Campaign information updated successfully.');
-        navigate('/campaign');
+        toast.success("Campaign information updated successfully.");
+        navigate("/campaign");
       } else {
-        toast.error('Failed to update campaign information.');
+        toast.error("Failed to update campaign information.");
       }
     } catch (error) {
-      toast.error('Failed to update campaign information.');
+      toast.error("Failed to update campaign information.");
     }
   };
 
@@ -111,8 +110,12 @@ export default function Edit() {
         <div className="status-cont">
           <h3>Campaign Information</h3>
           <p>
-            Campaign Status <span className="demac">|</span>{' '}
-            <span className={formData.campaignStatus === 'Active' ? 'active' : 'inactive'}>
+            Campaign Status <span className="demac">|</span>{" "}
+            <span
+              className={
+                formData.campaignStatus === "Active" ? "active" : "inactive"
+              }
+            >
               {formData.campaignStatus}
             </span>
           </p>
@@ -126,7 +129,9 @@ export default function Edit() {
                 required
                 name="campaignName"
                 value={formData.campaignName}
-                onChange={(e) => setFormData({ ...formData, campaignName: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, campaignName: e.target.value })
+                }
               />
             </div>
 
@@ -139,7 +144,9 @@ export default function Edit() {
                   type="date"
                   name="startDate"
                   value={formData.startDate}
-                  onChange={(e) => setFormData({ ...formData, startDate: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, startDate: e.target.value })
+                  }
                   className="edit-start-date-input"
                 />
               </div>
@@ -149,7 +156,9 @@ export default function Edit() {
                   type="date"
                   name="endDate"
                   value={formData.endDate}
-                  onChange={(e) => setFormData({ ...formData, endDate: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, endDate: e.target.value })
+                  }
                   className="edit-end-date-input"
                 />
               </div>
@@ -158,7 +167,9 @@ export default function Edit() {
               <label>Linked Keywords*</label>
               <textarea
                 name="linkedKeywords"
-                onChange={(e) => setFormData({ ...formData, linkedKeywords: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, linkedKeywords: e.target.value })
+                }
                 value={formData.linkedKeywords}
               />
             </div>
@@ -167,20 +178,29 @@ export default function Edit() {
               <select
                 className="addnew-select-input edit-daily digest"
                 name="digestCampaign"
-                value={formData.digestCampaign ? 'Yes' : 'No'}
-                onChange={(e) => setFormData({ ...formData, digestCampaign: e.target.value === 'Yes' })}
+                value={formData.digestCampaign ? "Yes" : "No"}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    digestCampaign: e.target.value === "Yes",
+                  })
+                }
               >
                 <option value="Yes">Yes</option>
                 <option value="No">No</option>
               </select>
             </div>
             <div>
-              <label>Kindly select how often you want to receive daily digest</label>
+              <label>
+                Kindly select how often you want to receive daily digest
+              </label>
               <select
                 className="addnew-select-input edit-daily"
                 name="dailyDigest"
                 value={formData.dailyDigest}
-                onChange={(e) => setFormData({ ...formData, dailyDigest: e.target.value })}
+                onChange={(e) =>
+                  setFormData({ ...formData, dailyDigest: e.target.value })
+                }
               >
                 <option value="Monthly">Monthly</option>
                 <option value="Weekly">Weekly</option>
@@ -190,12 +210,14 @@ export default function Edit() {
               <Link to="">
                 <button className="stop-btn">Stop Campaign</button>
               </Link>
-              <button type="submit" className="edit-page-btn">Edit Information</button>
+              <button type="submit" className="edit-page-btn">
+                Edit Information
+              </button>
             </div>
           </form>
         </div>
       </div>
-      <ToastContainer 
+      <ToastContainer
         position="top-center"
         autoClose={3000}
         hideProgressBar={true}
@@ -204,7 +226,8 @@ export default function Edit() {
         rtl={true}
         pauseOnFocusLoss
         draggable
-        pauseOnHover/>
+        pauseOnHover
+      />
     </div>
   );
 }
