@@ -1,8 +1,8 @@
 import { useContext } from "react";
-import { Context } from "@/contexts/Context";
+import { CampaignContext } from "@/contexts/CampaignContext";
 
 export const useCampaignContext = () => {
-  const context = useContext(Context);
+  const context = useContext(CampaignContext);
   if (context === undefined) {
     throw new Error("useCampaignContext must be used within a ContextProvider");
   }

@@ -3,9 +3,9 @@ import { createContext, useState, useEffect } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-export const Context = createContext<contextType | undefined>(undefined);
+export const CampaignContext = createContext<contextType | undefined>(undefined);
 
-export const ContextProvider = ({ children }: childrenPropsType) => {
+export const CampaignContextProvider = ({ children }: childrenPropsType) => {
   const [campaigns, setCampaigns] = useState([]);
 
   // the function that handles the fecting of the campaigns fromthe api
@@ -61,5 +61,5 @@ export const ContextProvider = ({ children }: childrenPropsType) => {
   };
 
   const value = { campaigns, getCampaigns, deleteCampaign };
-  return <Context.Provider value={value}>{children}</Context.Provider>;
+  return <CampaignContext.Provider value={value}>{children}</CampaignContext.Provider>;
 };

@@ -1,10 +1,15 @@
-import DesktopLayout from "./desktop"
-import { Outlet } from "react-router-dom"
+import { childrenPropsType } from "@/types";
+import SideNavbar from "@/components/SideNavbar";
+import Header from "@/components/Header";
 
-export const GrandLayout = () => {
+const GrandLayout = ({ children }: childrenPropsType) => {
   return (
-    <DesktopLayout>
-        <Outlet />
-    </DesktopLayout>
-  )
-}
+    <div className="min-h-screen">
+      <SideNavbar />
+      <Header />
+      {children}
+    </div>
+  );
+};
+
+export default GrandLayout;

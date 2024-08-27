@@ -4,10 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import "@/screens/editCampaign/EditCampaign.css";
-import "@/screens/newCampaign/NewCampaign.css";
-import Navbar from "@/layout/desktop/sideNavbar/Side-navbar";
-import TopNav from "@/layout/desktop/Header";
 
 export default function Edit() {
   const location = useLocation();
@@ -97,33 +93,35 @@ export default function Edit() {
   };
 
   return (
-    <div>
-      <Navbar />
-      <TopNav />
-      <div className="edit-campaign-cont">
+    <div className="font-sans ml-[6%]">
+      <div className="ml-[22%] pt-[10%] px-5 py-10 text-gray-600">
         <Link to="/campaign">
-          <p className="back">
-            <IoMdArrowBack className="arrow-back" />
+          <p className="flex items-center gap-1 text-gray-800 font-medium mb-4">
+            <IoMdArrowBack className="text-xl" />
             Back
           </p>
         </Link>
-        <div className="status-cont">
-          <h3>Campaign Information</h3>
-          <p>
-            Campaign Status <span className="demac">|</span>{" "}
+        <div className="flex justify-between items-center mb-6 w-[42.6rem]">
+          <h3 className="text-left text-xl mb-3 text-[#247b7b] font-workSans font-bold">
+            Campaign Information
+          </h3>
+          <p className="bg-gray-100 text-sm px-2 py-1 rounded">
+            Campaign Status <span className="text-gray-300">|</span>{" "}
             <span
               className={
-                formData.campaignStatus === "Active" ? "active" : "inactive"
+                formData.campaignStatus === "Active"
+                  ? "text-green-600"
+                  : "text-red-600"
               }
             >
               {formData.campaignStatus}
             </span>
           </p>
         </div>
-        <div className="edit-campaign-form">
-          <form onSubmit={handleEdit}>
-            <div className="name edit-name">
-              <label>Campaign Name</label>
+        <div>
+          <form className="w-[42.6rem]" onSubmit={handleEdit}>
+            <div className="mb-5">
+              <label className="block text-sm mb-1">Campaign Name</label>
               <input
                 type="text"
                 required
@@ -132,13 +130,14 @@ export default function Edit() {
                 onChange={(e) =>
                   setFormData({ ...formData, campaignName: e.target.value })
                 }
+                className="w-full p-2 border border-gray-400 rounded"
               />
             </div>
 
-            <div className="date-container">
-              <div className="start-date-cont">
-                <label className="edit-start-date">
-                  Start Date<span className="required">*</span>
+            <div className="flex gap-6 mb-5">
+              <div className="flex flex-col w-1/2">
+                <label className="text-sm mb-1">
+                  Start Date<span className="text-red-600">*</span>
                 </label>
                 <input
                   type="date"
@@ -147,11 +146,11 @@ export default function Edit() {
                   onChange={(e) =>
                     setFormData({ ...formData, startDate: e.target.value })
                   }
-                  className="edit-start-date-input"
+                  className="w-full p-2 border border-gray-400 rounded"
                 />
               </div>
-              <div className="edit-end-date-cont">
-                <label>End Date</label>
+              <div className="flex flex-col w-1/2">
+                <label className="text-sm mb-1">End Date</label>
                 <input
                   type="date"
                   name="endDate"
@@ -159,24 +158,27 @@ export default function Edit() {
                   onChange={(e) =>
                     setFormData({ ...formData, endDate: e.target.value })
                   }
-                  className="edit-end-date-input"
+                  className="w-full p-2 border border-gray-400 rounded"
                 />
               </div>
             </div>
-            <div>
-              <label>Linked Keywords*</label>
+            <div className="mb-5">
+              <label className="block text-sm mb-1">Linked Keywords*</label>
               <textarea
                 name="linkedKeywords"
                 onChange={(e) =>
                   setFormData({ ...formData, linkedKeywords: e.target.value })
                 }
                 value={formData.linkedKeywords}
+                className="w-full p-2 border border-gray-400 rounded min-h-[100px]"
               />
             </div>
-            <div>
-              <label>Want to receive daily digest about the campaign?</label>
+            <div className="mb-5">
+              <label className="block text-sm mb-1">
+                Want to receive daily digest about the campaign?
+              </label>
               <select
-                className="addnew-select-input edit-daily digest"
+                className="w-full p-2 border border-gray-400 rounded"
                 name="digestCampaign"
                 value={formData.digestCampaign ? "Yes" : "No"}
                 onChange={(e) =>
@@ -190,12 +192,12 @@ export default function Edit() {
                 <option value="No">No</option>
               </select>
             </div>
-            <div>
-              <label>
+            <div className="mb-5">
+              <label className="block text-sm mb-1">
                 Kindly select how often you want to receive daily digest
               </label>
               <select
-                className="addnew-select-input edit-daily"
+                className="w-full p-2 border border-gray-400 rounded"
                 name="dailyDigest"
                 value={formData.dailyDigest}
                 onChange={(e) =>
@@ -206,11 +208,19 @@ export default function Edit() {
                 <option value="Weekly">Weekly</option>
               </select>
             </div>
-            <div className="edit-campaign-btns">
+            <div className="flex gap-6 mt-6">
               <Link to="">
-                <button className="stop-btn">Stop Campaign</button>
+                <button
+                  type="button"
+                  className="w-36 py-2 bg-red-800 text-white rounded font-semibold"
+                >
+                  Stop Campaign
+                </button>
               </Link>
-              <button type="submit" className="edit-page-btn">
+              <button
+                type="submit"
+                className="w-36 py-2 border border-teal-700 text-teal-700 rounded font-semibold"
+              >
                 Edit Information
               </button>
             </div>
