@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { IoMdArrowBack } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { axiosInstance } from "@/configurations/AxiosConfig";
 
 export default function Edit() {
   const location = useLocation();
@@ -23,19 +23,12 @@ export default function Edit() {
 
   useEffect(() => {
     getCampaign();
-  }, []);
+  });
 
   const getCampaign = async () => {
     if (id) {
       try {
-        const postData = await axios.get(
-          `https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`,
-          {
-            headers: {
-              "Content-Type": "application/json",
-            },
-          }
-        );
+        const postData = await axiosInstance.get(`/Campaign/${id}`);
 
         const campaignData = postData.data;
         campaignData.startDate = formatDate(campaignData.startDate);
@@ -70,15 +63,7 @@ export default function Edit() {
     console.log("Submitting form with data:", payload);
 
     try {
-      const response = await axios.put(
-        `https://infinion-test-int-test.azurewebsites.net/api/Campaign/${id}`,
-        payload,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await axiosInstance.put(`/Campaign/${id}`, payload);
 
       console.log("Response:", formData);
       if (response.status === 200 || response.status === 204) {

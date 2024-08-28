@@ -1,13 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
-import TopNav from "@/components/Header";
-import Navbar from "@/components/SideNavbar";
 import Successful from "@/components/Successful";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import { axiosInstance } from "@/configurations/AxiosConfig";
 
 export default function NewCampaign() {
   const [isToggle, setIsToggle] = useState(false);
@@ -40,23 +38,16 @@ export default function NewCampaign() {
       return;
     }
     try {
-      await axios.post(
-        "https://infinion-test-int-test.azurewebsites.net/api/campaign",
-        {
-          campaignName: name,
-          campaignDescription: description,
-          LinkedKeywords: [keywords],
-          dailyDigest: "weekly",
-          startDate: startDate,
-          endDate: endDate,
-          digestCampaign: digestCampaign,
-        },
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      await axiosInstance.post("/campaign", {
+        campaignName: name,
+        campaignDescription: description,
+        LinkedKeywords: [keywords],
+        dailyDigest: "weekly",
+        startDate: startDate,
+        endDate: endDate,
+        digestCampaign: digestCampaign,
+      });
+
       setIsSuccessful(true);
       setFormData({
         name: "",
