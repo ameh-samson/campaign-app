@@ -57,7 +57,7 @@ export default function Campaign() {
             </p>
           </div>
           <div className="flex items-center gap-7">
-            <div className="flex items-center justify-center text-xs text-[#666666] rounded border border-[#999999] px-[0.625rem]">
+            <div className="flex items-center justify-center text-xs text-[#666666] rounded border border-[#999999] px-4 py-2">
               <input
                 type="search"
                 name="search"

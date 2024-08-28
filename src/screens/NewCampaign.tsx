@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from "react";
 import { BsToggleOn, BsToggleOff } from "react-icons/bs";
 import TopNav from "@/components/Header";
 import Navbar from "@/components/SideNavbar";
-import Successful from "@/components/successful/Successful";
+import Successful from "@/components/Successful";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";

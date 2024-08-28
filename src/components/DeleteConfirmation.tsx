@@ -1,6 +1,6 @@
-import React from 'react'
+import React from "react";
 
-export default function () {
+export default function DeleteConfirmation() {
   return (
     <div className="confirm-delete-cont">
       <p className="delete-text">Stop Campaign</p>
@@ -13,5 +13,5 @@ export default function () {
         <button className="delete">Delete Campaign</button>
       </div>
     </div>
-  )
+  );
 }

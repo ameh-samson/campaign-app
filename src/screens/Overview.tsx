@@ -7,7 +7,7 @@ import searchEmpty from "@/search.json";
 
 export default function Overview() {
   return (
-    <div className="text-center ml-[22%] pt-[10%] pl-[5.4rem]">
+    <div className=" text-center ml-[22%] pt-[10%] pl-[5.4rem] w-[78%]">
       <div className="flex items-center justify-between">
         <h2 className="text-left text-xl mb-6 text-[#247b7b] font-workSans font-bold">
           Overview
@@ -24,7 +24,7 @@ export default function Overview() {
               </option>
             </select>
           </div>
-          <div className="flex items-center gap-2 bg-[#f0f4f4] text-base font-bold text-[#247b7b] px-8">
+          <div className="flex items-center gap-2 bg-[#f0f4f4] text-base font-bold text-[#247b7b] px-8 mr-11">
             <CiExport className="text-2xl font-bold" />
             <p>Export</p>
           </div>
